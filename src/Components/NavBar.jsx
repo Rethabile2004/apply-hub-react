@@ -1,53 +1,58 @@
 import { Link } from "react-router-dom";
+
 function NavBar() {
   const navStyle = {
     display: "flex",
-    gap: "20px",
+    gap: "30px",
     justifyContent: "center",
-    backgroundColor: "blue",
-    color: "white",
-    padding: "15px",
+    alignItems: "center",
+    backgroundColor: "#007bff",
+    padding: "15px 0",
+    fontFamily: "Arial, sans-serif",
   };
+
   const linkStyle = {
-    textDecoration: "white",
+    textDecoration: "none", // corrected from "white"
     color: "white",
     fontSize: "16px",
     fontWeight: "bold",
-    transition: "color 0.3s ease",
+    padding: "8px 12px",
+    borderRadius: "6px",
+    transition: "background 0.3s ease, color 0.3s ease",
   };
 
-  const hoverStyle = {
-    color: "purple",
+  const handleHover = (e, isHovering) => {
+    e.target.style.color = isHovering ? "#d4bfff" : "white";
+    e.target.style.backgroundColor = isHovering ? "#0056b3" : "transparent";
   };
+
   return (
-    <>
-      <nav style={navStyle}>
-        <Link
-          onMouseOver={(e) => (e.target.style.color = hoverStyle.color)}
-          onMouseOut={(e) => (e.target.style.color = linkStyle.color)}
-          style={linkStyle}
-          to="/"
-        >
-          Home
-        </Link>
-        <Link
-          onMouseOver={(e) => (e.target.style.color = hoverStyle.color)}
-          onMouseOut={(e) => (e.target.style.color = linkStyle.color)}
-          style={linkStyle}
-          to="/application-form"
-        >
-          Submit Application
-        </Link>
-        <Link
-          onMouseOver={(e) => (e.target.style.color = hoverStyle.color)}
-          onMouseOut={(e) => (e.target.style.color = linkStyle.color)}
-          style={linkStyle}
-          to="/applications"
-        >
-          View All Applications
-        </Link>
-      </nav>
-    </>
+    <nav style={navStyle}>
+      <Link
+        to="/"
+        style={linkStyle}
+        onMouseOver={(e) => handleHover(e, true)}
+        onMouseOut={(e) => handleHover(e, false)}
+      >
+        Home
+      </Link>
+      <Link
+        to="/application-form"
+        style={linkStyle}
+        onMouseOver={(e) => handleHover(e, true)}
+        onMouseOut={(e) => handleHover(e, false)}
+      >
+        Submit Application
+      </Link>
+      <Link
+        to="/applications"
+        style={linkStyle}
+        onMouseOver={(e) => handleHover(e, true)}
+        onMouseOut={(e) => handleHover(e, false)}
+      >
+        View All Applications
+      </Link>
+    </nav>
   );
 }
 

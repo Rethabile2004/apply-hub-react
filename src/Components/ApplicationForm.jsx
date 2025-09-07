@@ -1,10 +1,13 @@
 import { useState, useContext } from "react";
 import { ApplicationsContext } from "./ApplicationProvider";
+import { useNavigate } from "react-router-dom";
 
 function ApplicationForm() {
+  const navigate = useNavigate();
   const { addApplication } = useContext(ApplicationsContext);
 
   const [next, setNext] = useState(false);
+  const [submitted, setSubmitted] = useState(false);
   const [input, setInput] = useState({
     name: "",
     surname: "",
@@ -34,118 +37,157 @@ function ApplicationForm() {
   const handleFinalSubmit = (e) => {
     e.preventDefault();
     if (input.position.trim()) {
-      addApplication(input);
+      addApplication(
+        input.name,
+        input.surname,
+        input.email,
+        input.phoneNumber,
+        input.position
+      );
       alert("Application Submitted Successfully!");
+      setSubmitted(true);
     } else {
       alert("Please select a position.");
     }
   };
 
-  const containerStyle = {
-    display: "flex",
-    flexDirection: "row",
-    justifyContent: "center",
-    alignItems: "center",
-    height: "80vh",
-  };
-  const contStyle = {
-    backgroundColor: "white",
-    padding: "40px 50px",
-    borderRadius: "12px",
-    textAlign: "center",
-    width: "400px",
-  };
-  const buttonStyle = {
-    padding: "12px 24px",
-    background: "blue",
-    color: "white",
-    border: "none",
-    borderRadius: "8px",
-    fontSize: "16px",
-    cursor: "pointer",
-    boxShadow: "0 8px 11px #ccc",
-    transition: "background 0.3s ease",
-  };
-  const buttonHover = {
-    color: "black",
-  };
-  const imgStyle = {
-    width: "140px",
-  };
-  const formStyle = {
-    display: "flex",
-    flexDirection: "column",
-    gap: "15px",
-  };
-  const inputStyle = {
-    padding: "8px 12px",
-    border: "1px solid #ccc",
-    borderRadius: "8px",
-    boxShadow: "0 8px 11px #ccc",
-  };
-  const selectStyle = {
-    padding: "8px 16px",
-    fontSize: "13px",
-    border: "1px solid #ccc",
-    borderRadius: "9px",
+  // 🎨 Styles
+  const styles = {
+    container: {
+      display: "flex",
+      flexWrap: "wrap",
+      flexDirection:"row",
+      justifyContent: "center",
+      alignItems: "flex-start",
+      gap: "40px",
+      padding: "40px",
+    },
+    card: {
+      backgroundColor: "#fff",
+      padding: "30px",
+      borderRadius: "12px",
+      boxShadow: "0 4px 12px rgba(0,0,0,0.1)",
+      width: "100%",
+      maxWidth: "400px",
+      textAlign: "center",
+    },
+    form: {
+      display: "flex",
+      flexDirection: "column",
+      gap: "15px",
+    },
+    input: {
+      padding: "10px 14px",
+      border: "1px solid #ccc",
+      borderRadius: "8px",
+      fontSize: "14px",
+    },
+    select: {
+      padding: "10px 14px",
+      border: "1px solid #ccc",
+      borderRadius: "8px",
+      fontSize: "14px",
+    },
+    button: {
+      padding: "12px 24px",
+      backgroundColor: "#007bff",
+      color: "#fff",
+      border: "none",
+      borderRadius: "8px",
+      fontSize: "16px",
+      cursor: "pointer",
+      transition: "background 0.3s ease",
+    },
+    buttonHover: {
+      backgroundColor: "#0056b3",
+    },
+    image: {
+      width: "140px",
+      marginTop: "20px",
+    },
+    successCard: {
+      margin: "60px auto",
+      padding: "40px",
+      width: "100%",
+      maxWidth: "400px",
+      textAlign: "center",
+      borderRadius: "20px",
+      boxShadow: "0 4px 12px #ccc",
+    },
   };
 
+  // 🧾 Render
+  if (submitted) {
+    return (
+      <div style={styles.successCard}>
+        <h3>Application Submitted Successfully!</h3>
+        <img style={styles.image} src="/src/assets/happy.svg" alt="Success" />
+        <button
+          style={styles.button}
+          onClick={() => navigate("/applications")}
+        >
+          Track Application
+        </button>
+      </div>
+    );
+  }
+
   return (
-    <div style={containerStyle}>
-      <div style={contStyle}>
-        <h3>Please enter Your Personal Information to Continue.</h3>
+    <div style={styles.container}>
+      <div style={styles.card}>
+        <h3>Enter Your Personal Information</h3>
         {!next ? (
-          <form onSubmit={handleNext} style={formStyle}>
+          <form onSubmit={handleNext} style={styles.form}>
             <input
-              onChange={handleInput}
-              style={inputStyle}
+              style={styles.input}
               type="text"
               name="name"
-              required
               placeholder="First Name"
+              value={input.name}
+              onChange={handleInput}
+              required
             />
             <input
-              onChange={handleInput}
-              style={inputStyle}
+              style={styles.input}
               type="text"
               name="surname"
-              required
               placeholder="Surname"
+              value={input.surname}
+              onChange={handleInput}
+              required
             />
             <input
-              onChange={handleInput}
-              style={inputStyle}
+              style={styles.input}
               type="email"
               name="email"
-              required
               placeholder="Email"
+              value={input.email}
+              onChange={handleInput}
+              required
             />
             <input
-              onChange={handleInput}
-              style={inputStyle}
+              style={styles.input}
               type="text"
               name="phoneNumber"
-              required
               placeholder="Phone Number"
+              value={input.phoneNumber}
+              onChange={handleInput}
+              required
             />
-            <button
-              onMouseOver={(e) => (e.target.style.color = buttonHover.color)}
-              onMouseOut={(e) => (e.target.style.color = buttonStyle.color)}
-              style={buttonStyle}
-              type="submit"
-            >
+            <button style={styles.button} type="submit">
               Next
             </button>
           </form>
         ) : (
-          <form onSubmit={handleFinalSubmit} style={formStyle}>
+          <form onSubmit={handleFinalSubmit} style={styles.form}>
             <select
               name="position"
-              style={selectStyle}
+              style={styles.select}
+              value={input.position}
               onChange={handleInput}
               required
             >
-              <option value="">Select an Option</option>
+              <option value="">Select a Position</option>
               <option value="Software Developer as Vodacom">
                 Software Developer as Vodacom
               </option>
@@ -168,20 +210,11 @@ function ApplicationForm() {
               onChange={handleFileUpload}
             />
 
-            <button
-              onMouseOver={(e) => (e.target.style.color = buttonHover.color)}
-              onMouseOut={(e) => (e.target.style.color = buttonStyle.color)}
-              style={buttonStyle}
-              type="submit"
-            >
+            <button style={styles.button} type="submit">
               Submit
             </button>
           </form>
         )}
-      </div>
-      <div style={contStyle}>
-        <h6>{input.name}</h6>
-        <img style={imgStyle} src="/src/assets/form.svg" alt="" />
       </div>
     </div>
   );
