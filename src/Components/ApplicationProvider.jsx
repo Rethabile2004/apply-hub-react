@@ -14,7 +14,7 @@ const ApplicationProvider = ({ children }) => {
   };
 
   return (
-    <ApplicationsContext.Provider value={{ applications, addApplication }}>
+    <ApplicationsContext.Provider value={{applications,addApplication}}>
       {children}
     </ApplicationsContext.Provider>
   );
