@@ -1,6 +1,7 @@
 import { useContext, useState } from "react";
 import { ApplicationsContext } from "./ApplicationProvider.jsx";
 import "/src/Components/ListAppications.css"
+import { PrefetchPageLinks } from "react-router-dom";
 
 function ListApplications() {
   const { applications } = useContext(ApplicationsContext);
@@ -31,12 +32,12 @@ function ListApplications() {
                   <td>{app.email}</td>
                   <td>{app.position}</td>
                   <td>
-                    <button
+                    <Link
                       className="expand-button"
                       onClick={() => setSelectedApp(app)}
                     >
                       Expand
-                    </button>
+                    </Link>
                   </td>
                 </tr>
               ))}

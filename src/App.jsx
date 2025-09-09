@@ -17,7 +17,8 @@ function App() {
               <Route path="/" element={<Home />} />
               <Route path="/application-form" element={<ApplicationForm />} />
               <Route path="/applications" element={<ListApplications />} />
-                           <Route path="/page" element={<ExpandApplication />} />
+              <Route path="/application/:id" element={<ExpandApplication />} />
+              
             </Routes>
           </div>
           <Footer />
