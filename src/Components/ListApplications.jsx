@@ -1,7 +1,6 @@
 import { useContext, useState } from "react";
 import { ApplicationsContext } from "./ApplicationProvider.jsx";
 import "/src/Components/ListAppications.css"
-import { PrefetchPageLinks } from "react-router-dom";
 
 function ListApplications() {
   const { applications } = useContext(ApplicationsContext);
@@ -32,12 +31,12 @@ function ListApplications() {
                   <td>{app.email}</td>
                   <td>{app.position}</td>
                   <td>
-                    <Link
+                    <button
                       className="expand-button"
                       onClick={() => setSelectedApp(app)}
                     >
                       Expand
-                    </Link>
+                    </button>
                   </td>
                 </tr>
               ))}
@@ -50,9 +49,10 @@ function ListApplications() {
 
   return (
     <div className="details-container">
-      <h2>{selectedApp.name}</h2>
+      <h2>{selectedApp.name} {selectedApp.surname}</h2>
+      <p><strong>Email:</strong> {selectedApp.email}</p>
+      <p><strong>Contact Number:</strong> {selectedApp.phoneNumber}</p>
       <p><strong>Position:</strong> {selectedApp.position}</p>
-      {/* Add more fields if needed */}
       <button className="back-button" onClick={() => setSelectedApp(null)}>
         ← Back to List
       </button>

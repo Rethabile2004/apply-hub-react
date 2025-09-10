@@ -5,7 +5,9 @@ import Home from "./Components/Home.jsx";
 import ApplicationForm from "./Components/ApplicationForm.jsx";
 import ApplicationProvider from "./Components/ApplicationProvider.jsx";
 import ListApplications from "./Components/ListApplications.jsx";
-import ExpandApplication from "./Components/ExpandApplication.jsx";
+import Contact from "./Components/Contact.jsx";
+import About from "./Components/About.jsx";
+import "/src/App.css"
 function App() {
   return (
     <ApplicationProvider>
@@ -17,7 +19,8 @@ function App() {
               <Route path="/" element={<Home />} />
               <Route path="/application-form" element={<ApplicationForm />} />
               <Route path="/applications" element={<ListApplications />} />
-              <Route path="/application/:id" element={<ExpandApplication />} />
+              <Route path="/contact" element={<Contact />} />
+              <Route path="/about" element={<About />} />
               
             </Routes>
           </div>

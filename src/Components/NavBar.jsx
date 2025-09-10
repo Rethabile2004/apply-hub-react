@@ -52,6 +52,21 @@ function NavBar() {
       >
         View All Applications
       </Link>
+      <Link
+        to="/about"
+        style={linkStyle}
+        onMouseOver={(e) => handleHover(e, true)}
+        onMouseOut={(e) => handleHover(e, false)}
+      >
+        About Us
+      </Link><Link
+        to="/contact"
+        style={linkStyle}
+        onMouseOver={(e) => handleHover(e, true)}
+        onMouseOut={(e) => handleHover(e, false)}
+      >
+        Contact
+      </Link>
     </nav>
   );
 }

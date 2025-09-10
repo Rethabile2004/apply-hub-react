@@ -6,9 +6,11 @@ function Home() {
     flexDirection: "column",
     justifyContent: "center",
     alignItems: "center",
-    minHeight: "100vh", // ensures full screen height
+    minHeight: "90vh",
     backgroundColor: "#f5f5f5",
     padding: "20px",
+    
+    
   };
 
   const cardStyle = {
@@ -41,20 +43,23 @@ function Home() {
   };
 
   return (
-    <div style={containerStyle}>
-      <div style={cardStyle}>
-        <img style={imgStyle} src="/src/assets/welcome.svg" alt="Welcome" />
-        <h1>Welcome to ApplyHub</h1>
-        <p>
-          ApplyHub is your open gateway to submit applications for anything you
-          need. No rigid categories. No confusing forms. Just a simple,
-          streamlined experience designed to help you express your request
-          clearly and confidently.
-        </p>
-        <Link to="/application-form" style={buttonStyle}>
-          Get Started
-        </Link>
+    <div>
+      <div style={containerStyle}>
+        <div style={cardStyle}>
+          <img style={imgStyle} src="/src/assets/welcome.svg" alt="Welcome" />
+          <h1>Welcome to ApplyHub</h1>
+          <p>
+            ApplyHub is your open gateway to submit applications for anything
+            you need. No rigid categories. No confusing forms. Just a simple,
+            streamlined experience designed to help you express your request
+            clearly and confidently.
+          </p>
+          <Link to="/application-form" style={buttonStyle}>
+            Get Started
+          </Link>
+        </div>
       </div>
+      <div style={{height:"40px"}}></div>
     </div>
   );
 }

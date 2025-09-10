@@ -51,7 +51,6 @@ function ApplicationForm() {
     }
   };
 
-  // 🎨 Styles
   const styles = {
     container: {
       display: "flex",
@@ -116,7 +115,6 @@ function ApplicationForm() {
     },
   };
 
-  // 🧾 Render
   if (submitted) {
     return (
       <div style={styles.successCard}>
