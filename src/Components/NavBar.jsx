@@ -12,7 +12,7 @@ function NavBar() {
   };
 
   const linkStyle = {
-    textDecoration: "none", // corrected from "white"
+    textDecoration: "none",
     color: "white",
     fontSize: "16px",
     fontWeight: "bold",

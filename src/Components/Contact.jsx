@@ -1,5 +1,5 @@
 import React from "react";
-import contactImg from "../assets/contact.svg"; // adjust path if needed
+import contactImg from "../assets/contact.svg"; 
 
 const Contact = () => {
   const containerStyle = {

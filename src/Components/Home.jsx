@@ -9,8 +9,6 @@ function Home() {
     minHeight: "90vh",
     backgroundColor: "#f5f5f5",
     padding: "20px",
-    
-    
   };
 
   const cardStyle = {
@@ -33,7 +31,7 @@ function Home() {
     cursor: "pointer",
     transition: "background 0.3s ease",
     marginTop: "20px",
-    textDecoration: "none", // for Link styling
+    textDecoration: "none",
     display: "inline-block",
   };
 
@@ -59,7 +57,7 @@ function Home() {
           </Link>
         </div>
       </div>
-      <div style={{height:"40px"}}></div>
+      <div style={{ height: "40px" }}></div>
     </div>
   );
 }
