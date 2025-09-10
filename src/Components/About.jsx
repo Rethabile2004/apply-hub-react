@@ -44,10 +44,10 @@ const About = () => {
         <img src={aboutImg} alt="About QuizMaster" style={imageStyle} />
         <h1 style={titleStyle}>About QuizMaster</h1>
         <p style={textStyle}>
-          QuizMaster is a fun and interactive quiz platform designed to help you
-          learn, test your knowledge, and challenge your friends. Our goal is to
-          make learning engaging and rewarding, while giving you instant feedback
-          on your performance.
+          Applyhub is an interactive web platform designed to help you
+          discover, share, and apply for new internships. Our goal is to
+          make applying engaging and short, while giving you instant feedback
+          on your application status.
         </p>
       </div>
     </div>

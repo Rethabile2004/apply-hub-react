@@ -1,7 +1,11 @@
 import React from "react";
-import contactImg from "../assets/contact.svg"; 
-
+import contactImg from "../assets/contact.svg";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 const Contact = () => {
+    const navigate=useNavigate()
+  // eslint-disable-next-line no-unused-vars
+  const [input, setInput] = useState({ name: "", email: "", message: "" });
   const containerStyle = {
     display: "flex",
     justifyContent: "center",
@@ -58,16 +62,35 @@ const Contact = () => {
     transition: "background 0.3s ease",
     marginTop: "10px",
   };
-
+  const handleOnChange = (e) => {
+    setInput((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+  };
+  const handleSubmit = () => {
+    alert("Message Recieved. Thank You. ");
+    navigate("/")
+  };
   return (
     <div style={containerStyle}>
       <div style={cardStyle}>
         <img src={contactImg} alt="Contact QuizMaster" style={imageStyle} />
         <h1 style={titleStyle}>Contact Us</h1>
         <p style={textStyle}>Have questions or feedback? Send us a message!</p>
-        <input type="text" placeholder="Your Name" style={inputStyle} />
-        <input type="email" placeholder="Your Email" style={inputStyle} />
+        <input
+          onChange={handleOnChange}
+          type="text"
+          placeholder="Your Name"
+          style={inputStyle}
+        />
+        <input
+          onChange={handleOnChange}
+          required
+          type="email"
+          placeholder="Your Email"
+          style={inputStyle}
+        />
         <textarea
+          required
+          onChange={handleOnChange}
           placeholder="Your Message"
           rows="4"
           style={{ ...inputStyle, resize: "none" }}
@@ -76,6 +99,7 @@ const Contact = () => {
           style={buttonStyle}
           onMouseOver={(e) => (e.target.style.backgroundColor = "blue")}
           onMouseOut={(e) => (e.target.style.backgroundColor = "blue")}
+          onClick={handleSubmit}
         >
           Send Message
         </button>
